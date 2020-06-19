@@ -12,7 +12,7 @@ public class KeyboardHorizontalMoveAbility : Ability
     public override void EarlyProcessAbility()
     {
         base.EarlyProcessAbility();
-        _horizontal = Input.GetAxis("Horizontal");
+        _horizontal = _playerController.IsGrounded ? Input.GetAxis("Horizontal") : Mathf.Lerp(_horizontal, Input.GetAxis("Horizontal") * 0.5f, Time.deltaTime);
     }
     public override void ProcessAbility()
     {

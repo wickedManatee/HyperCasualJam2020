@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 JumpForce;
     public Vector3 CurrentDirection;
+    public LayerMask GroundLayers;
     public SphereCollider PlayerCollider { get; protected set; }
+    public bool IsGrounded {  get { return Grounded(); } }
 
 
     protected List<Ability> _abilities;
@@ -68,5 +70,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+
+    protected virtual bool Grounded()
+    {
+        var grounded = Physics.OverlapSphere(transform.position, PlayerCollider.radius, GroundLayers.value);
+        return grounded != null && grounded.Length > 0;
+    }
 }
