@@ -326,7 +326,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044031306}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5bc89906cc45bd74fb03f9bd4974a93a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: {x: 0, y: 0, z: 0}
   CurrentDirection: {x: 0, y: 0, z: 0}
+  Friction: 5
   GroundLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -448,10 +449,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044031306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f57cdea43f57418133326988643dd, type: 3}
+  m_Script: {fileID: 11500000, guid: d0df4e5b228e7304f95bdede7cbe51d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 5
+  JumpForce: 30
+  MaxJumpControl: 5
 --- !u!1 &1608973539
 GameObject:
   m_ObjectHideFlags: 0

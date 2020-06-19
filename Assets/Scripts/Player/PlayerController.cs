@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 JumpForce;           // Set this with some Ability script
     public Vector3 CurrentDirection;    // Set this with some Ability script
+    public float Friction = 5f;
     public LayerMask GroundLayers;      // Used to determine if the player is grounded
     public SphereCollider PlayerCollider { get; protected set; }    
     public bool IsGrounded {  get { return Grounded(); } }
@@ -29,7 +30,10 @@ public class PlayerController : MonoBehaviour
     // A simple implementation.  We can tweak if needed.  This is the meat of this script since it's where the "controlling" actually occurs.
     protected virtual void FixedUpdate()
     {
-        _rigidbody.MovePosition(_rigidbody.position + (CurrentDirection + JumpForce) * Time.deltaTime);
+        //_rigidbody.MovePosition(_rigidbody.position + (CurrentDirection + JumpForce) * Time.deltaTime);
+        _rigidbody.AddForce(JumpForce * 100 * Time.deltaTime, ForceMode.Acceleration);
+        _rigidbody.AddForce(CurrentDirection * 100 * Time.deltaTime, ForceMode.Acceleration);
+        if (IsGrounded) _rigidbody.AddForce(-_rigidbody.velocity.normalized * Friction * 100 * Time.deltaTime, ForceMode.Acceleration);
     }
 
     // Calls all abilities.   These calls could just as easily be refactored into a separate Character class but for convenience we'll keep it in the controller for now
