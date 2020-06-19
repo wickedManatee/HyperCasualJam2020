@@ -30,9 +30,9 @@ public class AcornController : MonoBehaviour
             {
                 if (hit.transform.name.StartsWith("Acorn"))
                 {
-                    GameObject seeds = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
-                    GameObject branch = Instantiate(branchPrefab, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
+                    GameObject seeds = Instantiate(seedsPrefab, hit.transform.position, Quaternion.identity);
+                    GameObject branch = Instantiate(branchPrefab, hit.transform.position, Quaternion.identity);
+                    Destroy(hit.transform.gameObject);
                 }
                 else
                 {
