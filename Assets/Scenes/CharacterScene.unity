@@ -407,6 +407,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: {x: 0, y: 0, z: 0}
   CurrentDirection: {x: 0, y: 0, z: 0}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &1044031312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,9 +452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 5
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &1608973539
 GameObject:
   m_ObjectHideFlags: 0

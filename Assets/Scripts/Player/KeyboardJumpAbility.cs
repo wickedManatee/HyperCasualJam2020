@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// A Keyboard implementation of Jumping
 public class KeyboardJumpAbility : Ability
 {
     public float JumpForce = 5f;
-    public LayerMask GroundLayers;
 
     protected float _jump;
 
+    // If grounded and the player presses jump
     public override void EarlyProcessAbility()
     {
         base.EarlyProcessAbility();
@@ -20,6 +21,7 @@ public class KeyboardJumpAbility : Ability
         }
     }
 
+    // Modifies controller
     public override void ProcessAbility()
     {
         base.ProcessAbility();
