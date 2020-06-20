@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Paused)
             return;
+
         ClearController();
         EarlyProcess();
         Process();
