@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
         Paused = false;
     }
 
+    public virtual void SetKinematic(bool isKinematic)
+    {
+        _rigidbody.isKinematic = isKinematic;
+    }
+
     // A simple implementation.  We can tweak if needed.  This is the meat of this script since it's where the "controlling" actually occurs.
     protected virtual void FixedUpdate()
     {
@@ -34,7 +39,12 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded) _rigidbody.AddForce(-_rigidbody.velocity.normalized * Friction * 100 * Time.deltaTime, ForceMode.Acceleration);
     }
 
-    
+    public virtual void SetPosition(Vector3 vector3)
+    {
+        transform.position = vector3;
+    }
+
+
 
     // Calls all abilities.   These calls could just as easily be refactored into a separate Character class but for convenience we'll keep it in the controller for now
     // Doing it this way so we can easily add polished features such as Pausing later if there's time

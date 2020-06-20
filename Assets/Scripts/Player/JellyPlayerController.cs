@@ -26,4 +26,15 @@ public class JellyPlayerController : PlayerController
     {
         return _jelly.IsGrounded(GroundLayers, 2);
     }
+
+    public override void SetKinematic(bool isKinematic)
+    {
+        _jelly.SetKinematic(isKinematic, false);
+    }
+
+    public override void SetPosition(Vector3 vector3)
+    {
+        Debug.Log("CAlled?");
+        _jelly.SetPosition(vector3, true);
+    }
 }
