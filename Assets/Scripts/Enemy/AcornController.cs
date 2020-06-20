@@ -13,17 +13,11 @@ public class AcornController : MonoBehaviour
     public Transform branchContainer;
 
     GameController gameCtrl;
+    Vector3 storedVelocity;
 
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
-
-    void Update()
-    {
-        //transform.localPosition += Time.deltaTime * speed * Vector3.back;
-        if (transform.localPosition.z <= -22f) //TODO Rewrite to be off camera instead
-            Destroy(transform.gameObject);
     }
 
     public void DestroyAcorn()
@@ -36,11 +30,6 @@ public class AcornController : MonoBehaviour
 
         //Now that we are done with acorn, destroy it
         Destroy(transform.gameObject);
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)

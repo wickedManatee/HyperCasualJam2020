@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
 
+    public enum GameState { play, paused, gameOver}
+    public GameState gameState;
+
     private int _level;
     private float _gameTime;
     private int _score;
@@ -23,10 +26,13 @@ public class GameController : MonoBehaviour
     public GameObject EnvironmentContainer;
 
     private GameObject[] levelPrefabs;
+    private PlayerController player;
 
     private void Awake()
     {
         Instance = this;
+        gameState = GameState.play;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Start()
@@ -37,7 +43,7 @@ public class GameController : MonoBehaviour
         LevelCompletePanel.SetActive(false);
 
         InstantiateWorld();
-        CreateLevel();
+        CreateLevel();        
     }
 
     void Update()
@@ -86,18 +92,33 @@ public class GameController : MonoBehaviour
     #region Public methods
     public void LevelComplete()
     {
-        AcornSpawner.Instance.Stop();
+        gameState = GameState.gameOver;
         LevelCompletePanel.SetActive(true);
     }
 
     public void GameOver()
     {
+        gameState = GameState.gameOver;
         EndGamePanel.SetActive(true);
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene("EnemyScene");
+    }
+
+    public void Pause()
+    {
+        gameState = GameState.paused;
+        player.Paused = true;
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        gameState = GameState.play;
+        player.Paused = false;
+        Time.timeScale = 1;
     }
 
     public void NextLevel()

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider PlayerCollider { get; protected set; }
     public Rigidbody PlayerRigidBody { get { return _rigidbody; } }
     public bool IsGrounded {  get { return Grounded(); } }
-
+    public bool Paused = false;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     // Doing it this way so we can easily add polished features such as Pausing later if there's time
     protected virtual void Update()
     {
+        if (Paused)
+            return;
         ClearController();
         EarlyProcess();
         Process();
