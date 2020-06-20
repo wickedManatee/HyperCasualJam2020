@@ -26,6 +26,8 @@ public class AcornSpawner : MonoBehaviour
     [SerializeField]
     float timerToIncrease = 10f;
 
+    float _lastSpawn = 0;
+
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -57,9 +59,15 @@ public class AcornSpawner : MonoBehaviour
 
     void SpawnAcorn()
     {
-        float randomX = Random.Range(-4.5f, 4.5f);
+        if (_lastSpawn == 0)
+            _lastSpawn = Random.Range(-4.5f, 4.5f);
+        else if (_lastSpawn < 0)
+            _lastSpawn = Random.Range(0, 4.5f);
+        else if (_lastSpawn > 0)
+            _lastSpawn = Random.Range(-4.5f, 0);
+
         GameObject acornInstance =Instantiate(acorn, acornContainer);
-        acornInstance.transform.position = transform.position + new Vector3(randomX, 0f, 0f);
+        acornInstance.transform.position = transform.position + new Vector3(_lastSpawn, 0f, 0f);
         acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
         acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
         acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;

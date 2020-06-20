@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 44262376760001453}
   - component: {fileID: 44262376760001452}
   - component: {fileID: 44262376760001455}
-  - component: {fileID: 44262376760001454}
   - component: {fileID: 44262376760001361}
   - component: {fileID: 44262376760001450}
+  - component: {fileID: 7283089600525335846}
   m_Layer: 0
   m_Name: Acorn
   m_TagString: Untagged
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &44262376760001454
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44262376760001360}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &44262376760001361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,10 +110,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189e41531c1f1be4998a9b156b3484b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
   seedsPrefab: {fileID: 2304718944368251895, guid: 6aaccc86b6b9ec14bb0e130317e880c4,
     type: 3}
   branchPrefab: {fileID: 8860152963368232191, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc,
     type: 3}
   seedContainer: {fileID: 0}
   branchContainer: {fileID: 0}
+--- !u!65 &7283089600525335846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44262376760001360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 3, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
