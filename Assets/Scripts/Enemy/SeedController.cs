@@ -14,7 +14,7 @@ public class SeedController : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition += Time.deltaTime * speed * Vector3.back;
+        //transform.localPosition += Time.deltaTime * speed * Vector3.back;
         if (transform.localPosition.z <= -22f) //TODO Rewrite to be off camera instead
             Destroy(transform.gameObject);
     }
