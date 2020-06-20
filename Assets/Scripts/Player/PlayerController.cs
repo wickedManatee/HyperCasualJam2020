@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if (collision.transform.tag == "OutOfBounds" && collision.transform.name == "Floor")
         {
             Respawn();
+            //TODO when testing over -> gameCtrl.GameOver();
         }
     }
 }
