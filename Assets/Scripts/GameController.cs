@@ -52,15 +52,16 @@ public class GameController : MonoBehaviour
         _gameTime = 0;
         _score = 0;
 
-        levelPrefabs = new GameObject[3];
+        levelPrefabs = new GameObject[4];
         levelPrefabs[0] = Resources.Load<GameObject>("Prefabs/LevelGround");
         levelPrefabs[1] = Resources.Load<GameObject>("Prefabs/LevelMid");
         levelPrefabs[2] = Resources.Load<GameObject>("Prefabs/LevelTop");
+        levelPrefabs[3] = Resources.Load<GameObject>("Prefabs/PopupPanel");
     }
 
     private void CreateLevel()
     {
-        
+        //Destroy what's in it
         foreach (Transform trans in EnvironmentContainer.GetComponentsInChildren<Transform>())
         {
             if (trans.name == EnvironmentContainer.name)
@@ -68,14 +69,18 @@ public class GameController : MonoBehaviour
             Destroy(trans.gameObject);
         }
 
+        //Create the ground/repeated middle/top
         Instantiate(levelPrefabs[0], EnvironmentContainer.transform);
         for (int i = 0; i < Level; i++)
         {
             GameObject midPanel = Instantiate(levelPrefabs[1], EnvironmentContainer.transform);
-            midPanel.transform.localPosition = new Vector3(0, i * 12, 0);
+            midPanel.transform.localPosition = new Vector3(0, i+1 * 6, 0);
         }
         GameObject endPanel = Instantiate(levelPrefabs[2], EnvironmentContainer.transform);
-        endPanel.transform.localPosition = new Vector3(0, Level * 12, 0);
+        endPanel.transform.localPosition = new Vector3(0, Level+1 * 6, 0);
+
+        //Popup for level start
+        Instantiate(levelPrefabs[3], txtGameTime.transform.parent);
     }
 
     #region Public methods
