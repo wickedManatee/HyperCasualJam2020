@@ -42,20 +42,6 @@ public class PlayerController : MonoBehaviour
         EarlyProcess();
         Process();
         LateProcess();
-
-        if (Input.GetMouseButtonDown(0)) //mouse or phone touch
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            { //If we clicked on an acorn
-                if (hit.transform.name.StartsWith("Acorn"))
-                {
-                    hit.transform.GetComponent<AcornController>().DestroyAcorn();
-                }
-            }
-        }
     }
 
     // Resets all values.  It's on the abilities to set these values themselves every frame.
