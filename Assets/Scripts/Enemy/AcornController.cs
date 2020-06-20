@@ -13,6 +13,8 @@ public class AcornController : MonoBehaviour
     public Transform branchContainer;
     [HideInInspector]
     public Transform fxContainer;
+    [HideInInspector]
+    public Transform vineContainer;
 
     GameController gameCtrl;
     Vector3 storedVelocity;
@@ -22,11 +24,12 @@ public class AcornController : MonoBehaviour
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    public void PassContainers(Transform seed, Transform branch, Transform fx)
+    public void PassContainers(Transform seed, Transform branch, Transform fx, Transform vine)
     {
         seedContainer = seed;
         branchContainer = branch;
         fxContainer = fx;
+        vineContainer = vine;
     }
 
     public void DestroyAcorn()
@@ -35,13 +38,16 @@ public class AcornController : MonoBehaviour
         GameObject fxClick = Instantiate(clickPrefab, fxContainer);
         fxClick.transform.position = transform.position + Vector3.back * 2;
         Destroy(fxClick, 2f);
+
         GameObject lightningPrefab = Resources.Load<GameObject>("Prefabs/FX_Lightnings");
         GameObject fxLightning = Instantiate(lightningPrefab, fxContainer);
         fxLightning.transform.position = transform.position + Vector3.back* 2;
         Destroy(fxLightning, 2f);
 
-        GameObject seeds = Instantiate(seedsPrefab, seedContainer);
-        seeds.transform.position = transform.position;
+        GameObject seed = Instantiate(seedsPrefab, seedContainer);
+        seed.transform.position = transform.position + Vector3.down;
+        seed.GetComponent<SeedController>().vineContainer = vineContainer;
+
         GameObject branch = Instantiate(branchPrefab, branchContainer);
         branch.transform.position = transform.position;
         gameCtrl.AddScore(2);

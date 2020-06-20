@@ -100,10 +100,12 @@ public class GameController : MonoBehaviour
     {
         gameState = GameState.gameOver;
         EndGamePanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("EnemyScene");
     }
 
