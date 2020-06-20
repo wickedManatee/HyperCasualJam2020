@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3892293627775897042}
   - component: {fileID: 3892293627775897036}
   - component: {fileID: 3892293627775897041}
+  - component: {fileID: 32905268514932255}
+  - component: {fileID: 1582364280288802254}
   m_Layer: 9
   m_Name: Droplet
   m_TagString: Untagged
@@ -143,3 +145,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: 10
   MaxJumpsPerSecond: 1
+--- !u!114 &32905268514932255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892293627775897033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6969d005bfd59ae4690e8dde722e901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveForce: 1
+--- !u!114 &1582364280288802254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892293627775897033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371b1b3612e1b9b40afa22ce93743cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
