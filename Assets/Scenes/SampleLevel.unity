@@ -233,7 +233,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 128849888}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976513492}
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &128849888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,6 +1021,7 @@ MonoBehaviour:
   txtGameTime: {fileID: 846829819}
   EndGamePanel: {fileID: 1563211622}
   LevelCompletePanel: {fileID: 1547849935}
+  EnvironmentContainer: {fileID: 473499224}
 --- !u!4 &976513493
 Transform:
   m_ObjectHideFlags: 0
@@ -1954,7 +1966,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1640591675}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976513492}
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1640591675
 MonoBehaviour:
   m_ObjectHideFlags: 0
