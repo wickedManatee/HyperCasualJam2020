@@ -24,7 +24,7 @@ public class AcornSpawner : MonoBehaviour
     [SerializeField]
     float spawnIncreaseTimer;
     [SerializeField]
-    float timerToIncrease;
+    float timerToIncrease = 10f;
 
     void Start()
     {
