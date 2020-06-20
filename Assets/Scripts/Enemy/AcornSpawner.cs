@@ -29,8 +29,6 @@ public class AcornSpawner : MonoBehaviour
 
     float _lastSpawn = 0;
 
-    protected bool _stopped = false;
-
     private void Awake()
     {
         Instance = this;
@@ -42,7 +40,7 @@ public class AcornSpawner : MonoBehaviour
 
     void Update()
     {
-        if (_stopped)
+        if (gameCtrl.gameState != GameController.GameState.play)
             return;
 
         //Spawn acorn every timerToSpawn seconds
@@ -82,10 +80,5 @@ public class AcornSpawner : MonoBehaviour
         acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
         acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
         acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
-    }
-
-    public void Stop()
-    {
-        _stopped = true;
     }
 }

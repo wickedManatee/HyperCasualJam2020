@@ -14,13 +14,6 @@ public class SeedController : MonoBehaviour
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    void Update()
-    {
-        //transform.localPosition += Time.deltaTime * speed * Vector3.back;
-        if (transform.localPosition.z <= -22f) //TODO Rewrite to be off camera instead
-            Destroy(transform.gameObject);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "VineContainer")

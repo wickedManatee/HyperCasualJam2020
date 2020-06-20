@@ -16,8 +16,7 @@ public class VineController : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition += Time.deltaTime * speed * Vector3.up;
-        //gameObject.transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+            transform.localPosition += Time.deltaTime * speed * Vector3.up;
     }
 
     private void OnTriggerEnter(Collider other)
