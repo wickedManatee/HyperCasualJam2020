@@ -97,4 +97,17 @@ public class PlayerController : MonoBehaviour
         var grounded = Physics.OverlapSphere(transform.position, PlayerCollider.radius, GroundLayers.value);
         return grounded != null && grounded.Length > 0;
     }
+
+    public void Respawn()
+    {
+        transform.position = new Vector3(0, -2.11f, 0);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "OutOfBounds" && collision.transform.name == "Floor")
+        {
+            Respawn();
+        }
+    }
 }

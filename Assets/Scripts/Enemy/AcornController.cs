@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AcornController : MonoBehaviour
 {
-    public float speed;
     public GameObject seedsPrefab;
     public GameObject branchPrefab;
 
@@ -13,9 +12,11 @@ public class AcornController : MonoBehaviour
     [HideInInspector]
     public Transform branchContainer;
 
+    GameController gameCtrl;
+
     void Start()
     {
-        speed = 1;
+        gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     void Update()
@@ -35,22 +36,19 @@ public class AcornController : MonoBehaviour
         //Now that we are done with acorn, destroy it
         Destroy(transform.gameObject);
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            gameCtrl.GameOver();
+        } 
+        else if (other.transform.name == "Floor")
+            Destroy(gameObject);
+    }
 }
-
-
-// TODO
-/**
- * if (Input.GetMouseButtonDown(0)) //mouse or phone touch
-*        {
- *           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-  *          RaycastHit hit;
-  *
-     *       if (Physics.Raycast(ray, out hit))
-      *      { //If we clicked on an acorn
-       *         if (hit.transform.name.StartsWith("Acorn"))
-        *        {
-         *           hit.transform.GetComponent<AcornController>().DestroyAcorn();                   
-          *      }
-           * }
-        * }
- **/
