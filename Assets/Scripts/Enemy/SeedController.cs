@@ -6,6 +6,7 @@ public class SeedController : MonoBehaviour
 {
     public float speed;
     public GameObject vinePrefab;
+    public GameObject flowerPrefab;
 
     void Start()
     {
@@ -26,7 +27,13 @@ public class SeedController : MonoBehaviour
             //Create vines and destroy the seed
             GameObject vines = Instantiate(vinePrefab, other.transform, false);
             vines.transform.position = transform.position;
-            vines.transform.localPosition += new Vector3(0, 0, -24f);
+            vines.transform.localPosition += new Vector3(0, -24, 0f);
+            Destroy(gameObject);
+        }
+        else if( other.transform.tag == "Player")
+        {
+            GameObject flower = Instantiate(flowerPrefab, other.transform, false);
+            flower.transform.position = transform.position;
             Destroy(gameObject);
         }
     }

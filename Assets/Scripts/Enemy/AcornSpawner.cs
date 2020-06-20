@@ -60,7 +60,7 @@ public class AcornSpawner : MonoBehaviour
         float randomX = Random.Range(-4.5f, 4.5f);
         GameObject acornInstance =Instantiate(acorn, acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(randomX, 0f, 0f);
-        acornInstance.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
+        acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
         acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
         acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
     }
