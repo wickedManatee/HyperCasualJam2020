@@ -5,7 +5,8 @@ using UnityEngine;
 public class MouseJumpAbility : Ability
 {
     public float JumpForce = 5f;
-
+    [Range(0f, 0.2f)]
+    public float IgnoreTopClicsByPercent = 0.05f; // The Top % of the screen we should ignore for jumps
     protected Vector3 _jump;
 
     public override void EarlyProcessAbility()
@@ -18,9 +19,12 @@ public class MouseJumpAbility : Ability
             if (Input.GetMouseButtonDown(0))
             {
                 var mouse = Input.mousePosition;
-                mouse.z = -Camera.main.transform.position.z;
-                _jump = (Camera.main.ScreenToWorldPoint(mouse) - transform.position).normalized * JumpForce;
-                return;
+                if (mouse.y / Camera.main.pixelHeight < 1 - IgnoreTopClicsByPercent)    // The player has not clicked on the top most edge of the screen as defined by the IgnoreTopClicks property
+                {
+                    mouse.z = -Camera.main.transform.position.z;
+                    _jump = (Camera.main.ScreenToWorldPoint(mouse) - transform.position).normalized * JumpForce;
+                    return;
+                }
             }
         }
         _jump = Vector3.zero;

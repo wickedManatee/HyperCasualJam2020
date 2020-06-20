@@ -133,6 +133,7 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 256
+  Paused: 0
 --- !u!114 &3892293627775897041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 10
+  IgnoreTopClicsByPercent: 0.065
 --- !u!114 &32905268514932255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +189,6 @@ MonoBehaviour:
   RisingToCloudSpeed: 2
   DropletMesh: {fileID: 3892293627775897039}
   CloudMesh: {fileID: 1373602872837083142}
-  LevelCompleteHUD: {fileID: 0}
 --- !u!1 &6454063572944409278
 GameObject:
   m_ObjectHideFlags: 0
