@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DestroyAcornAbility : Ability
 {
-    public override void ProcessAbility()
-    {
-        base.ProcessAbility();
+    public bool AcornMarkedForDeath { get { return _markedForDeath != null; } }
+    protected AcornController _markedForDeath;
 
+    public override void EarlyProcessAbility()
+    {
+        base.EarlyProcessAbility();
         if (Input.GetMouseButtonDown(0)) //mouse or phone touch
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -17,9 +19,20 @@ public class DestroyAcornAbility : Ability
             { //If we clicked on an acorn
                 if (hit.transform.name.StartsWith("Acorn"))
                 {
-                    hit.transform.GetComponent<AcornController>().DestroyAcorn();
+                    _markedForDeath = hit.transform.GetComponent<AcornController>();
                 }
             }
         }
+    }
+
+    public override void LateProcessAbility()
+    {
+        base.ProcessAbility();
+        if(_markedForDeath != null)
+        {
+            _markedForDeath.DestroyAcorn();
+            _markedForDeath = null;
+        }
+        
     }
 }

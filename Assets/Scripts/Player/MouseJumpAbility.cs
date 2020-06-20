@@ -29,6 +29,9 @@ public class MouseJumpAbility : Ability
     public override void ProcessAbility()
     {
         base.ProcessAbility();
-        _playerController.PlayerRigidBody.AddForce(_jump, ForceMode.Impulse);
+        if (!GetComponent<DestroyAcornAbility>().AcornMarkedForDeath)
+        {
+            _playerController.PlayerRigidBody.AddForce(_jump, ForceMode.Impulse);
+        }
     }
 }
