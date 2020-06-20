@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider PlayerCollider { get; protected set; }
     public Rigidbody PlayerRigidBody { get { return _rigidbody; } }
     public bool IsGrounded {  get { return Grounded(); } }
-    public bool Paused = false;
+    public bool Paused;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         _abilities = new List<Ability>(GetComponents<Ability>());
         _rigidbody = GetComponent<Rigidbody>();
         PlayerCollider = GetComponent<SphereCollider>();
+        Paused = false;
     }
 
     // A simple implementation.  We can tweak if needed.  This is the meat of this script since it's where the "controlling" actually occurs.
