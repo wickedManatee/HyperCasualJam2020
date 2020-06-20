@@ -310,7 +310,6 @@ GameObject:
   - component: {fileID: 1044031307}
   - component: {fileID: 1044031313}
   - component: {fileID: 1044031311}
-  - component: {fileID: 1044031312}
   - component: {fileID: 1044031314}
   m_Layer: 9
   m_Name: Droplet
@@ -326,7 +325,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044031306}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5bc89906cc45bd74fb03f9bd4974a93a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -405,24 +404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4de1ad52dfb8384790d1e591f26a839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: {x: 0, y: 0, z: 0}
   CurrentDirection: {x: 0, y: 0, z: 0}
+  Friction: 5
   GroundLayers:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &1044031312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044031306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cf42f2d364054148a5802d2ebb91056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
 --- !u!54 &1044031313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -448,10 +434,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044031306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f57cdea43f57418133326988643dd, type: 3}
+  m_Script: {fileID: 11500000, guid: d0df4e5b228e7304f95bdede7cbe51d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 5
+  JumpForce: 10
+  MaxJumpsPerSecond: 1
 --- !u!1 &1608973539
 GameObject:
   m_ObjectHideFlags: 0
