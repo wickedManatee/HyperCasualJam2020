@@ -236,6 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01d55719460fc94c937d6584a51de22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  vinePrefab: {fileID: 7731063071740836046, guid: 7b128d296ef1707419519fc8e302ab28,
+    type: 3}
 --- !u!65 &3863676719373110044
 BoxCollider:
   m_ObjectHideFlags: 0

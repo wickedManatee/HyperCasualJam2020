@@ -5,9 +5,14 @@ using UnityEngine;
 public class AcornSpawner : MonoBehaviour
 {
     public GameObject acorn;
+    [Header("Containers")] //to keep our editor clean
+    public Transform acornContainer;
+    public Transform seedContainer;
+    public Transform branchContainer;
 
     GameController gameCtrl;
 
+    [Header("Timers")]
     [SerializeField]
     float spawnTimer;
     [SerializeField]
@@ -28,7 +33,9 @@ public class AcornSpawner : MonoBehaviour
 
     void Update()
     {
+        //Spawn acorn every timerToSpawn seconds
         spawnTimer += Time.deltaTime;
+        //Decrease how long it takes to spawn acorns every timerToIncrease seconds
         spawnIncreaseTimer += Time.deltaTime;
 
         if (spawnTimer >= timerToSpawn)
@@ -47,7 +54,9 @@ public class AcornSpawner : MonoBehaviour
     void SpawnAcorn()
     {
         float randomX = Random.Range(-4.5f, 4.5f);
-        GameObject acornInstance =Instantiate(acorn, transform);
-        acornInstance.transform.position = new Vector3(randomX, transform.position.y, transform.position.z);
+        GameObject acornInstance =Instantiate(acorn, acornContainer);
+        acornInstance.transform.position = transform.position + new Vector3(randomX, 0f, 0f);
+        acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
+        acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
     }
 }
