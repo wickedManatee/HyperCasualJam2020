@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     public enum GameState { play, paused, gameOver}
     public GameState gameState;
-
+    public string LoadOnReset = "EnemyScene";
     private int _level;
     private float _gameTime;
     private int _score;
@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
     public Text txtGameTime;
     public GameObject EndGamePanel;
     public GameObject LevelCompletePanel;
-
     public GameObject EnvironmentContainer;
 
     private GameObject[] levelPrefabs;
@@ -104,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("EnemyScene");
+        SceneManager.LoadScene(LoadOnReset);
     }
 
     public void Pause()

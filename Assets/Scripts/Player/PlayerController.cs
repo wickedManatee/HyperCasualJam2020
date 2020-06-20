@@ -5,7 +5,6 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -34,6 +33,8 @@ public class PlayerController : MonoBehaviour
         _rigidbody.AddForce(CurrentDirection * 100 * Time.deltaTime, ForceMode.Acceleration);
         if (IsGrounded) _rigidbody.AddForce(-_rigidbody.velocity.normalized * Friction * 100 * Time.deltaTime, ForceMode.Acceleration);
     }
+
+    
 
     // Calls all abilities.   These calls could just as easily be refactored into a separate Character class but for convenience we'll keep it in the controller for now
     // Doing it this way so we can easily add polished features such as Pausing later if there's time
@@ -88,9 +89,14 @@ public class PlayerController : MonoBehaviour
         return grounded != null && grounded.Length > 0;
     }
 
-    public void Respawn()
+    public virtual void Respawn()
     {
         transform.position = new Vector3(0, -2.11f, 0);
+    }
+
+    public virtual void AddForce(Vector3 jump, ForceMode impulse)
+    {
+        _rigidbody.AddForce(jump, impulse);
     }
 
     private void OnCollisionEnter(Collision collision)

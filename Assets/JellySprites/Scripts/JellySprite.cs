@@ -1874,7 +1874,7 @@ public abstract class JellySprite : MonoBehaviour
 	/// <summary>
 	/// Add a force to every reference point
 	/// </summary>
-	public void AddForce(Vector2 force)
+	public void AddForce(Vector2 force, ForceMode mode = ForceMode.Force)
 	{
 		if(m_ReferencePoints != null)
 		{
@@ -1887,7 +1887,7 @@ public abstract class JellySprite : MonoBehaviour
 				
 				if(referencePoint.Body3D)
 				{
-					referencePoint.Body3D.AddForce(force);
+					referencePoint.Body3D.AddForce(force, mode);
 				}
 			}
 		}
