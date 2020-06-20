@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameController : MonoBehaviour
     public float GameTime { get { return _gameTime; } set { _gameTime = value; } }
     public int Score { get { return _score; } set { _score = value; } }
 
+    public Text txtScore;
+    public Text txtGameTime;
+    public GameObject EndGamePanel;
+    public GameObject LevelCompletePanel;
+
     private void Awake()
     {
         Instance = this;
@@ -20,27 +26,32 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        _level = 0;
+        _level = 1;
         _gameTime = 0;
         _score = 0;
+
+        if (!txtScore || !txtGameTime || !EndGamePanel)
+            Debug.LogError("Set your canvas game objects");
+        EndGamePanel.SetActive(false);
+        LevelCompletePanel.SetActive(false);
     }
 
     void Update()
     {
         _gameTime += Time.deltaTime;
+        txtGameTime.text = Mathf.FloorToInt(_gameTime).ToString();
     }
 
     public void LevelComplete()
     {
         _level++;
         AcornSpawner.Instance.Stop();
+        LevelCompletePanel.SetActive(true);
     }
 
     public void GameOver()
     {
-        Debug.Log("You lose");
-        //Show game over panel with score
-        //Give option to restart
+        EndGamePanel.SetActive(true);
     }
 
     public void RestartGame()
@@ -50,8 +61,9 @@ public class GameController : MonoBehaviour
         _gameTime = 0;
     }
 
-    public void AddScore()
+    public void AddScore(int val)
     {
-        _score++;
+        _score+= val;
+        txtScore.text = _score.ToString();
     }
 }

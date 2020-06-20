@@ -9,17 +9,10 @@ public class WinAtTheTop : MonoBehaviour
     public float RisingToCloudSpeed = 2f;
     public MeshRenderer DropletMesh;
     public MeshRenderer CloudMesh;
-    public Canvas LevelCompleteHUD;
 
     protected virtual void Start()
     {
         CloudMesh.enabled = false;
-        if(LevelCompleteHUD == null)
-        {
-            Debug.LogWarning("LevelCompleteHUD not set.  Trying to find one in scene.");
-            LevelCompleteHUD = FindObjectOfType<Canvas>();
-        }
-        LevelCompleteHUD.gameObject.SetActive(false);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -63,6 +56,5 @@ public class WinAtTheTop : MonoBehaviour
     protected virtual void Congrats()
     {
         Debug.Log("Level Complete");
-        LevelCompleteHUD.gameObject.SetActive(true);
     }
 }

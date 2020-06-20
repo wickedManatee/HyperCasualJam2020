@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SeedController : MonoBehaviour
 {
-    public float speed;
     public GameObject vinePrefab;
     public GameObject flowerPrefab;
 
+    GameController gameCtrl;
+
     void Start()
     {
-        speed = .5f;
+        gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     void Update()
@@ -34,6 +35,7 @@ public class SeedController : MonoBehaviour
         {
             GameObject flower = Instantiate(flowerPrefab, other.transform, false);
             flower.transform.position = transform.position;
+            gameCtrl.AddScore(1);
             Destroy(gameObject);
         }
     }

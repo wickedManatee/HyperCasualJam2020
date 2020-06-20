@@ -19,11 +19,11 @@ public class AcornSpawner : MonoBehaviour
 
     [Header("Timers")]
     [SerializeField]
-    float spawnTimer;
+    float spawnTimer = 5f;
     [SerializeField]
-    float timerToSpawn;
+    float timerToSpawn = 5f;
     [SerializeField]
-    float spawnIncreaseTimer;
+    float spawnIncreaseTimer = 0f;
     [SerializeField]
     float timerToIncrease = 10f;
 
@@ -38,10 +38,6 @@ public class AcornSpawner : MonoBehaviour
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        //timerToSpawn = 5f;
-        //timerToIncrease = 10f;
-        //spawnTimer = 5f;
-        //spawnIncreaseTimer = 0;
     }
 
     void Update()
@@ -70,11 +66,16 @@ public class AcornSpawner : MonoBehaviour
     void SpawnAcorn()
     {
         if (_lastSpawn == 0)
-            _lastSpawn = Random.Range(-4.5f, 4.5f);
-        else if (_lastSpawn < 0)
-            _lastSpawn = Random.Range(0, 4.5f);
+        {
+            //Prevent acorn to hit player at start
+            _lastSpawn = Random.Range(1.15f, 5f);
+            //Random go left or right
+            _lastSpawn = Random.Range(0, 2) == 1 ? _lastSpawn * -1 : _lastSpawn; 
+        }
+        else if (_lastSpawn < 0) 
+            _lastSpawn = Random.Range(1f, 5f); // Move farther away from 0 so there's more variance
         else if (_lastSpawn > 0)
-            _lastSpawn = Random.Range(-4.5f, 0);
+            _lastSpawn = Random.Range(-5f, -1f);
 
         GameObject acornInstance =Instantiate(acorn, acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(_lastSpawn, 0f, 0f);

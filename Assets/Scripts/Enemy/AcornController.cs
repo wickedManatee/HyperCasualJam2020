@@ -32,6 +32,7 @@ public class AcornController : MonoBehaviour
         seeds.transform.position = transform.position;
         GameObject branch = Instantiate(branchPrefab, branchContainer);
         branch.transform.position = transform.position;
+        gameCtrl.AddScore(2);
 
         //Now that we are done with acorn, destroy it
         Destroy(transform.gameObject);
