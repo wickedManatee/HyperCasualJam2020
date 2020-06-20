@@ -8,8 +8,6 @@ public class SeedController : MonoBehaviour
     public GameObject flowerPrefab;
 
     GameController gameCtrl;
-    [HideInInspector]
-    public Transform vineContainer;
 
     void Start()
     {
@@ -41,7 +39,7 @@ public class SeedController : MonoBehaviour
     {
         //Create vines and destroy the seed
         GameObject vines = Instantiate(vinePrefab, transform.position, Quaternion.identity);
-        vines.transform.parent = vineContainer;
+        vines.transform.parent = gameCtrl.vineContainer;
         //vines.transform.position = transform.position;
         //vines.transform.lossyScale = Vector3.one;
         Destroy(gameObject);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
-
+    public GameObject playerPrefab;
+    public CinemachineVirtualCamera camFollow;
     public enum GameState { play, paused, gameOver}
     public GameState gameState;
 
@@ -23,16 +25,24 @@ public class GameController : MonoBehaviour
     public GameObject EndGamePanel;
     public GameObject LevelCompletePanel;
 
+    [Header("Containers")] //to keep our editor clean
+    public Transform acornContainer;
+    public Transform seedContainer;
+    public Transform branchContainer;
+    public Transform fxContainer;
+    public Transform vineContainer;
     public GameObject EnvironmentContainer;
 
     private GameObject[] levelPrefabs;
     private PlayerController player;
+    private GameObject finish;
 
     private void Awake()
     {
         Instance = this;
         gameState = GameState.play;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        finish = GameObject.FindGameObjectWithTag("Finish");
     }
 
     void Start()
@@ -43,7 +53,7 @@ public class GameController : MonoBehaviour
         LevelCompletePanel.SetActive(false);
 
         InstantiateWorld();
-        CreateLevel();        
+        CreateLevelBackground();        
     }
 
     void Update()
@@ -54,7 +64,7 @@ public class GameController : MonoBehaviour
 
     private void InstantiateWorld()
     {
-        _level = 1;
+        _level =2;
         _gameTime = 0;
         _score = 0;
 
@@ -65,9 +75,9 @@ public class GameController : MonoBehaviour
         levelPrefabs[3] = Resources.Load<GameObject>("Prefabs/PopupPanel");
     }
 
-    private void CreateLevel()
+    private void CreateLevelBackground()
     {
-        //Destroy what's in it
+        //Destroy background contents
         foreach (Transform trans in EnvironmentContainer.GetComponentsInChildren<Transform>())
         {
             if (trans.name == EnvironmentContainer.name)
@@ -77,16 +87,66 @@ public class GameController : MonoBehaviour
 
         //Create the ground/repeated middle/top
         Instantiate(levelPrefabs[0], EnvironmentContainer.transform);
-        for (int i = 0; i < Level; i++)
+        GameObject midPanel = Instantiate(levelPrefabs[1], EnvironmentContainer.transform);
+        midPanel.transform.localPosition = new Vector3(0, 1.02f, 0);
+        for (int i = 0; i < Level-1; i++)
         {
-            GameObject midPanel = Instantiate(levelPrefabs[1], EnvironmentContainer.transform);
-            midPanel.transform.localPosition = new Vector3(0, i+1 * 6, 0);
+            GameObject midPanel2 = Instantiate(levelPrefabs[1], EnvironmentContainer.transform);
+            midPanel2.transform.localPosition = new Vector3(0, 1.02f + ((i+1) * 5.6f), 0);
         }
-        GameObject endPanel = Instantiate(levelPrefabs[2], EnvironmentContainer.transform);
-        endPanel.transform.localPosition = new Vector3(0, Level+1 * 6, 0);
+        GameObject canopyPanel = Instantiate(levelPrefabs[2], EnvironmentContainer.transform);
+        canopyPanel.transform.localPosition = new Vector3(0, 1.02f+ 2.47f + Level * 5.6f, 0);
+
+        finish.transform.position = canopyPanel.transform.position;
 
         //Popup for level start
-        Instantiate(levelPrefabs[3], txtGameTime.transform.parent);
+        GameObject levelStart = Instantiate(levelPrefabs[3], txtGameTime.transform.parent);
+        levelStart.GetComponentInChildren<Text>().text = "Level " + Level;
+    }
+
+    public void ResetLevel()
+    {
+        //Refresh player
+        Destroy(player.gameObject);
+        GameObject newPlayer = Instantiate(playerPrefab, new Vector3(0, 2, 0), Quaternion.identity);
+        player = newPlayer.GetComponent<PlayerController>();
+        camFollow.Follow = newPlayer.transform;
+
+        //Refresh vines
+        foreach (Transform trans in vineContainer.GetComponentsInChildren<Transform>())
+        {
+            if (trans.name == vineContainer.name)
+                continue;
+            Destroy(trans.gameObject);
+        }
+
+        //Refresh branches
+        foreach (Transform trans in branchContainer.GetComponentsInChildren<Transform>())
+        {
+            if (trans.name == branchContainer.name)
+                continue;
+            Destroy(trans.gameObject);
+        }
+        GameObject branchPrefab = Resources.Load<GameObject>("Prefabs/branch");
+        GameObject branch = Instantiate(branchPrefab, branchContainer);
+        branch.transform.position = new Vector3 (0,-2,0);
+
+
+        //Refresh acorns
+        foreach (Transform trans in acornContainer.GetComponentsInChildren<Transform>())
+        {
+            if (trans.name == acornContainer.name)
+                continue;
+            Destroy(trans.gameObject);
+        }
+
+        //Refresh seeds
+        foreach (Transform trans in seedContainer.GetComponentsInChildren<Transform>())
+        {
+            if (trans.name == seedContainer.name)
+                continue;
+            Destroy(trans.gameObject);
+        }
     }
 
     #region Public methods
@@ -125,8 +185,11 @@ public class GameController : MonoBehaviour
 
     public void NextLevel()
     {
-        _level++;
-        CreateLevel();
+        LevelCompletePanel.SetActive(false);
+        gameState = GameState.play;
+        _level++;        
+        CreateLevelBackground();
+        ResetLevel();
     }
 
     public void AddScore(int val)
