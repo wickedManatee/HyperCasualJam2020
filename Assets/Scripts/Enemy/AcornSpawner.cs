@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AcornSpawner : MonoBehaviour
 {
+    [Header("Spawn Randomness")]
+    public float MaxXRandomSpawnForce = 1f;
+    public float MaxYRandomSpawnForce = 1f;
+    [Header("Prefab")]
     public GameObject acorn;
     [Header("Containers")] //to keep our editor clean
     public Transform acornContainer;
@@ -25,10 +29,10 @@ public class AcornSpawner : MonoBehaviour
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        timerToSpawn = 5f;
-        timerToIncrease = 10f;
-        spawnTimer = 5f;
-        spawnIncreaseTimer = 0;
+        //timerToSpawn = 5f;
+        //timerToIncrease = 10f;
+        //spawnTimer = 5f;
+        //spawnIncreaseTimer = 0;
     }
 
     void Update()
@@ -56,6 +60,7 @@ public class AcornSpawner : MonoBehaviour
         float randomX = Random.Range(-4.5f, 4.5f);
         GameObject acornInstance =Instantiate(acorn, acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(randomX, 0f, 0f);
+        acornInstance.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
         acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
         acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
     }
