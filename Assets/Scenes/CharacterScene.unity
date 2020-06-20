@@ -405,7 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4de1ad52dfb8384790d1e591f26a839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: {x: 0, y: 0, z: 0}
   CurrentDirection: {x: 0, y: 0, z: 0}
   Friction: 5
   GroundLayers:
@@ -452,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0df4e5b228e7304f95bdede7cbe51d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 30
+  JumpForce: 5
   MaxJumpControl: 5
 --- !u!1 &1608973539
 GameObject:

@@ -25,7 +25,7 @@ public class KeyboardJumpAbility : Ability
     public override void ProcessAbility()
     {
         base.ProcessAbility();
-        _playerController.JumpForce = new Vector3(0f, _jump * JumpForce, 0f);
+        _playerController.PlayerRigidBody.AddForce(new Vector3(0f, _jump * JumpForce, 0f), ForceMode.Impulse);
     }
 
     
