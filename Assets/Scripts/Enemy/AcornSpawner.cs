@@ -14,6 +14,7 @@ public class AcornSpawner : MonoBehaviour
     public Transform acornContainer;
     public Transform seedContainer;
     public Transform branchContainer;
+    public Transform fxContainer;
 
     GameController gameCtrl;
 
@@ -78,7 +79,6 @@ public class AcornSpawner : MonoBehaviour
         GameObject acornInstance =Instantiate(acorn, acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(_lastSpawn, 0f, 0f);
         acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
-        acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
-        acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
+        acornInstance.GetComponent<AcornController>().PassContainers(seedContainer, branchContainer, fxContainer);
     }
 }
