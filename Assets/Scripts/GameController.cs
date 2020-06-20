@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     public float GameTime { get { return _gameTime; } set { _gameTime = value; } }
     public int Score { get { return _score; } set { _score = value; } }
 
-    // Start is called before the first frame update
     void Start()
     {
         _level = 0;
@@ -19,7 +18,6 @@ public class GameController : MonoBehaviour
         _score = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         _gameTime += Time.deltaTime;
@@ -28,6 +26,13 @@ public class GameController : MonoBehaviour
     public void LevelComplete()
     {
         _level++;
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("You lose");
+        //Show game over panel with score
+        //Give option to restart
     }
 
     public void RestartGame()
