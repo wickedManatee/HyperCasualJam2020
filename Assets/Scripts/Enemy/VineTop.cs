@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class VineTop : VineBasic
 {
-    public float speed = .5f;
+    
     public bool needsToSpawn;
-    [SerializeField]
-    private bool _keepMoving;
-    [SerializeField]
-    private bool _colliding;
+
+    bool _keepMoving;
+    bool _colliding;
+    float speed;
 
     private void Awake()
     {
         needsToSpawn = true;
         _keepMoving = true;
         _colliding = true;
+        speed = Random.Range(.25f, 1.5f);
     }
 
     private void Update()

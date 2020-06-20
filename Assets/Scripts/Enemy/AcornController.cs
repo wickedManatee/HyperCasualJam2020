@@ -41,12 +41,17 @@ public class AcornController : MonoBehaviour
 
         GameObject lightningPrefab = Resources.Load<GameObject>("Prefabs/FX_Lightnings");
         GameObject fxLightning = Instantiate(lightningPrefab, fxContainer);
-        fxLightning.transform.position = transform.position + Vector3.back* 2;
+        fxLightning.transform.position = transform.position + Vector3.back * 2;
         Destroy(fxLightning, 2f);
 
-        GameObject seed = Instantiate(seedsPrefab, seedContainer);
-        seed.transform.position = transform.position + Vector3.down;
-        seed.GetComponent<SeedController>().vineContainer = vineContainer;
+        int seedGenerator = Random.Range(1, 5);
+        for (int i = 0; i < seedGenerator; i++)
+        {
+            GameObject seed = Instantiate(seedsPrefab, seedContainer);
+            seed.transform.position = transform.position + new Vector3(.5f*i, Random.Range(-.5f,-1.5f), 0);
+            seed.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1, 6), Random.Range(0f, 6), 0f), ForceMode.Impulse);
+            seed.GetComponent<SeedController>().vineContainer = vineContainer;
+        }       
 
         GameObject branch = Instantiate(branchPrefab, branchContainer);
         branch.transform.position = transform.position;
