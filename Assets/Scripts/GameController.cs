@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
+
     private int _level;
     private float _gameTime;
     private int _score;
     public int Level { get { return _level; } set { _level = value; } }
     public float GameTime { get { return _gameTime; } set { _gameTime = value; } }
     public int Score { get { return _score; } set { _score = value; } }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -26,6 +33,7 @@ public class GameController : MonoBehaviour
     public void LevelComplete()
     {
         _level++;
+        AcornSpawner.Instance.Stop();
     }
 
     public void GameOver()
