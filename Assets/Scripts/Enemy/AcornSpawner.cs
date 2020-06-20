@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AcornSpawner : MonoBehaviour
 {
+    public static AcornSpawner Instance;
+
     [Header("Spawn Randomness")]
     public float MaxXRandomSpawnForce = 1f;
     public float MaxYRandomSpawnForce = 1f;
@@ -26,6 +28,13 @@ public class AcornSpawner : MonoBehaviour
     [SerializeField]
     float timerToIncrease = 10f;
 
+    protected bool _stopped = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -37,6 +46,9 @@ public class AcornSpawner : MonoBehaviour
 
     void Update()
     {
+        if (_stopped)
+            return;
+
         //Spawn acorn every timerToSpawn seconds
         spawnTimer += Time.deltaTime;
         //Decrease how long it takes to spawn acorns every timerToIncrease seconds
@@ -63,5 +75,10 @@ public class AcornSpawner : MonoBehaviour
         acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
         acornInstance.GetComponent<AcornController>().seedContainer = seedContainer;
         acornInstance.GetComponent<AcornController>().branchContainer = branchContainer;
+    }
+
+    public virtual void Stop()
+    {
+        _stopped = true;
     }
 }
