@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
 
     private void InstantiateWorld()
     {
-        _level =2;
+        _level = 1;
         _gameTime = 0;
         _score = 0;
 
@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour
     {
         //Refresh player
         Destroy(player.gameObject);
-        GameObject newPlayer = Instantiate(playerPrefab, new Vector3(0, 2, 0), Quaternion.identity);
+        GameObject newPlayer = Instantiate(playerPrefab, new Vector3(0, -4, 0), Quaternion.identity);
         player = newPlayer.GetComponent<PlayerController>();
         camFollow.Follow = newPlayer.transform;
 
@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
         }
         GameObject branchPrefab = Resources.Load<GameObject>("Prefabs/branch");
         GameObject branch = Instantiate(branchPrefab, branchContainer);
-        branch.transform.position = new Vector3 (0,-2,0);
+        branch.transform.position = new Vector3 (0,-5,0);
 
 
         //Refresh acorns
@@ -158,9 +158,12 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        gameState = GameState.gameOver;
-        EndGamePanel.SetActive(true);
-        Time.timeScale = 0;
+        if (gameState == GameController.GameState.play)
+        {
+            gameState = GameState.gameOver;
+            EndGamePanel.SetActive(true);
+            Time.timeScale = 0;
+        }        
     }
 
     public void RestartGame()

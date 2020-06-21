@@ -73,6 +73,5 @@ public class AcornSpawner : MonoBehaviour
 
         GameObject acornInstance =Instantiate(acorn, gameCtrl.acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(_lastSpawn, 0f, 0f);
-        acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
     }
 }

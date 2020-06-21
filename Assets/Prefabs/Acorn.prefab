@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedsPrefab: {fileID: 2304718944368251895, guid: 6aaccc86b6b9ec14bb0e130317e880c4,
     type: 3}
+  RandomRotationRange: 20
 --- !u!1 &2085534269421868716
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8134479124012332231
 GameObject:
