@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
         GameObject canopyPanel = Instantiate(levelPrefabs[2], EnvironmentContainer.transform);
         canopyPanel.transform.localPosition = new Vector3(0, 1.02f+ 2.47f + Level * 5.6f, 0);
 
-        finish.transform.position = canopyPanel.transform.position;
+        finish.transform.position = new Vector3(finish.transform.position.x, canopyPanel.transform.position.y, finish.transform.position.z);
 
         //Popup for level start
         GameObject levelStart = Instantiate(levelPrefabs[3], txtGameTime.transform.parent);

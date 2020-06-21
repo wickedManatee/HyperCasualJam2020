@@ -7,13 +7,7 @@ public class WinAtTheTop : MonoBehaviour
 {
     public bool LevelComplete = false;
     public float RisingToCloudSpeed = 2f;
-    public MeshRenderer DropletMesh;
-    public MeshRenderer CloudMesh;
 
-    protected virtual void Start()
-    {
-        CloudMesh.enabled = false;
-    }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -40,8 +34,7 @@ public class WinAtTheTop : MonoBehaviour
     {
         LevelComplete = true;
         GameController.Instance.LevelComplete();
-        //GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<PlayerController>().SetKinematic(true);
+        GetComponent<PlayerController>().Win();
         StartCoroutine(TurnToCloud());
     }
 
@@ -49,20 +42,13 @@ public class WinAtTheTop : MonoBehaviour
     {
         var raiseForTime = Time.time + 2f;
         var speed = new Vector3(0f, RisingToCloudSpeed, 0f);
-        TransformMesh();
+        
         while (Time.time < raiseForTime)
         {
             GetComponent<PlayerController>().SetPosition(transform.position + speed * Time.deltaTime);
             yield return null;
         }
         Congrats();
-    }
-
-    protected virtual void TransformMesh()
-    {
-        if (DropletMesh != null) DropletMesh.enabled = false;
-        else if(GetComponent<MeshRenderer>() != null) GetComponent<MeshRenderer>().enabled = false;
-        if (CloudMesh != null) CloudMesh.enabled = true;
     }
 
     protected virtual void Congrats()

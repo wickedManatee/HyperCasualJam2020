@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class JellyPlayerController : PlayerController
 {
-    protected JellySprite _jelly;
+    [Header("Jelly Tuning")]
     public int WarpFrames = 2;  // How many frames to warp a jelly.  The first have will move on the first frame, the rest this many frames later
+
+    protected JellySprite _jelly;
+    
 
     protected override void Awake()
     {

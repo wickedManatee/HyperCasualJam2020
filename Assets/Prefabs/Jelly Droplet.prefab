@@ -158,6 +158,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Paused: 0
+  DropletMesh: {fileID: 5443454570304988027}
+  CloudMesh: {fileID: 3572013532081354494}
   WarpFrames: 3
 --- !u!114 &5443454570304988031
 MonoBehaviour:
@@ -185,8 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelComplete: 0
   RisingToCloudSpeed: 2
-  DropletMesh: {fileID: 5443454570304988027}
-  CloudMesh: {fileID: 3572013532081354494}
 --- !u!114 &2094765220311038357
 MonoBehaviour:
   m_ObjectHideFlags: 0

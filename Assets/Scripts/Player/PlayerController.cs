@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [Header("Feel")]
     public Vector3 CurrentDirection;    // Set this with some Ability script
     public float Friction = 5f;
     public LayerMask GroundLayers;      // Used to determine if the player is grounded
@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public Rigidbody PlayerRigidBody { get { return _rigidbody; } }
     public bool IsGrounded {  get { return Grounded(); } }
     public bool Paused;
+
+    [Header("Looks")]
+    public MeshRenderer DropletMesh;
+    public MeshRenderer CloudMesh;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -25,6 +29,11 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         PlayerCollider = GetComponent<SphereCollider>();
         Paused = false;
+    }
+
+    protected virtual void Start()
+    {
+        CloudMesh.enabled = false;
     }
 
     public virtual void SetKinematic(bool isKinematic)
@@ -107,6 +116,22 @@ public class PlayerController : MonoBehaviour
     public virtual void AddForce(Vector3 jump, ForceMode impulse)
     {
         _rigidbody.AddForce(jump, impulse);
+    }
+
+    public virtual void Win()
+    {
+        SetKinematic(true);
+        
+        DropletMesh.enabled = false;
+        CloudMesh.enabled = true;
+    }
+
+    public virtual void Respawn(Vector3 position)
+    {
+        SetPosition(position);
+        SetKinematic(false);
+        DropletMesh.enabled = true;
+        CloudMesh.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
