@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 44262376760001455}
   - component: {fileID: 44262376760001361}
   - component: {fileID: 44262376760001450}
-  - component: {fileID: 6565592345268388134}
   m_Layer: 0
   m_Name: Acorn
   m_TagString: Untagged
@@ -31,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
-  m_Children: []
+  m_Children:
+  - {fileID: 4952550398461368520}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,22 +112,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedsPrefab: {fileID: 2304718944368251895, guid: 6aaccc86b6b9ec14bb0e130317e880c4,
     type: 3}
-  branchPrefab: {fileID: 8860152963368232191, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc,
-    type: 3}
-  seedContainer: {fileID: 0}
-  branchContainer: {fileID: 0}
-  fxContainer: {fileID: 0}
---- !u!136 &6565592345268388134
-CapsuleCollider:
+--- !u!1 &2085534269421868716
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44262376760001360}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4952550398461368520}
+  - component: {fileID: 1627881083724644208}
+  m_Layer: 0
+  m_Name: Tirgger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4952550398461368520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085534269421868716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 44262376760001453}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1627881083724644208
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085534269421868716}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
