@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 7567660647221479608}
   - {fileID: 4952550398461368520}
+  - {fileID: 2590472041772062186}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189e41531c1f1be4998a9b156b3484b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Thunder: {fileID: 0}
   seedsPrefab: {fileID: 2304718944368251895, guid: 6aaccc86b6b9ec14bb0e130317e880c4,
     type: 3}
   RandomRotationRange: 20
@@ -76,7 +78,7 @@ GameObject:
   - component: {fileID: 4952550398461368520}
   - component: {fileID: 1627881083724644208}
   m_Layer: 0
-  m_Name: Tirgger
+  m_Name: PlayerTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +110,50 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7329329984117721938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2590472041772062186}
+  - component: {fileID: 548142993024188639}
+  m_Layer: 11
+  m_Name: TouchTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2590472041772062186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329329984117721938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 44262376760001453}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &548142993024188639
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329329984117721938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8134479124012332231
 GameObject:
