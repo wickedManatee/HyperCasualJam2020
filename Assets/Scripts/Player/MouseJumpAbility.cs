@@ -35,7 +35,7 @@ public class MouseJumpAbility : Ability
         base.ProcessAbility();
         if (!GetComponent<DestroyAcornAbility>().AcornMarkedForDeath)
         {
-            _playerController.PlayerRigidBody.AddForce(_jump, ForceMode.Impulse);
+            _playerController.AddForce(_jump, ForceMode.Impulse);
         }
     }
 }

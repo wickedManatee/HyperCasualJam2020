@@ -7,19 +7,23 @@ public class WinAtTheTop : MonoBehaviour
 {
     public bool LevelComplete = false;
     public float RisingToCloudSpeed = 2f;
-    public MeshRenderer DropletMesh;
-    public MeshRenderer CloudMesh;
 
-    protected virtual void Start()
-    {
-        CloudMesh.enabled = false;
-    }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Finish"))
+        TriggerEnter(other);
+    }
+
+    protected virtual void OnJellyTriggerEnter(JellySprite.JellyCollider collision)
+    {
+        TriggerEnter(collision.Collider);
+    }
+
+    protected virtual void TriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
         {
-            if(!LevelComplete)
+            if (!LevelComplete)
             {
                 FinishedLevel();
             }
@@ -30,7 +34,7 @@ public class WinAtTheTop : MonoBehaviour
     {
         LevelComplete = true;
         GameController.Instance.LevelComplete();
-        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<PlayerController>().Win();
         StartCoroutine(TurnToCloud());
     }
 
@@ -38,23 +42,19 @@ public class WinAtTheTop : MonoBehaviour
     {
         var raiseForTime = Time.time + 2f;
         var speed = new Vector3(0f, RisingToCloudSpeed, 0f);
-        TransformMesh();
+        
         while (Time.time < raiseForTime)
         {
-            transform.position = transform.position + speed*Time.deltaTime;
+            GetComponent<PlayerController>().SetPosition(transform.position + speed * Time.deltaTime);
             yield return null;
         }
         Congrats();
-    }
-
-    protected virtual void TransformMesh()
-    {
-        DropletMesh.enabled = false;
-        CloudMesh.enabled = true;
     }
 
     protected virtual void Congrats()
     {
         Debug.Log("Level Complete");
     }
+
+    
 }

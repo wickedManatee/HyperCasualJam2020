@@ -20,11 +20,11 @@ public class BranchController : MonoBehaviour
 
     protected virtual void Start()
     {
-        PlayerTrigger.transform.position = new Vector3( 
-            PlayerTrigger.transform.position.x,
-            transform.position.y + BranchCollider.bounds.extents.y + _player.PlayerCollider.bounds.size.y + PlayerTrigger.bounds.extents.y,
-            PlayerTrigger.transform.position.z
-            );
+        //PlayerTrigger.transform.position = new Vector3( 
+        //    PlayerTrigger.transform.position.x,
+        //    transform.position.y + BranchCollider.bounds.extents.y + _player.PlayerCollider.bounds.size.y + PlayerTrigger.bounds.extents.y,
+        //    PlayerTrigger.transform.position.z
+        //    );
         _y = transform.position.y;
     }
 
@@ -38,7 +38,7 @@ public class BranchController : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if(!BranchCollider.enabled && other.GetComponent<PlayerController>() != null)
+        if(!BranchCollider.enabled && other.GetComponent<JellySpriteReferencePoint>() != null)
         {
             BranchCollider.enabled = true;
         }

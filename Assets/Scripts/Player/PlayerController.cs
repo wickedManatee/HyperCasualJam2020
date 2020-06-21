@@ -5,10 +5,9 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-
+    [Header("Feel")]
     public Vector3 CurrentDirection;    // Set this with some Ability script
     public float Friction = 5f;
     public LayerMask GroundLayers;      // Used to determine if the player is grounded
@@ -16,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public Rigidbody PlayerRigidBody { get { return _rigidbody; } }
     public bool IsGrounded {  get { return Grounded(); } }
     public bool Paused;
+
+    [Header("Looks")]
+    public MeshRenderer DropletMesh;
+    public MeshRenderer CloudMesh;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -28,12 +31,29 @@ public class PlayerController : MonoBehaviour
         Paused = false;
     }
 
+    protected virtual void Start()
+    {
+        CloudMesh.enabled = false;
+    }
+
+    public virtual void SetKinematic(bool isKinematic)
+    {
+        _rigidbody.isKinematic = isKinematic;
+    }
+
     // A simple implementation.  We can tweak if needed.  This is the meat of this script since it's where the "controlling" actually occurs.
     protected virtual void FixedUpdate()
     {
         _rigidbody.AddForce(CurrentDirection * 100 * Time.deltaTime, ForceMode.Acceleration);
         if (IsGrounded) _rigidbody.AddForce(-_rigidbody.velocity.normalized * Friction * 100 * Time.deltaTime, ForceMode.Acceleration);
     }
+
+    public virtual void SetPosition(Vector3 vector3, bool resetVelocity = true)
+    {
+        transform.position = vector3;
+    }
+
+
 
     // Calls all abilities.   These calls could just as easily be refactored into a separate Character class but for convenience we'll keep it in the controller for now
     // Doing it this way so we can easily add polished features such as Pausing later if there's time
@@ -88,9 +108,30 @@ public class PlayerController : MonoBehaviour
         return grounded != null && grounded.Length > 0;
     }
 
-    public void Respawn()
+    public virtual void Respawn()
     {
         transform.position = new Vector3(0, -2.11f, 0);
+    }
+
+    public virtual void AddForce(Vector3 jump, ForceMode impulse)
+    {
+        _rigidbody.AddForce(jump, impulse);
+    }
+
+    public virtual void Win()
+    {
+        SetKinematic(true);
+        
+        DropletMesh.enabled = false;
+        CloudMesh.enabled = true;
+    }
+
+    public virtual void Respawn(Vector3 position)
+    {
+        SetPosition(position);
+        SetKinematic(false);
+        DropletMesh.enabled = true;
+        CloudMesh.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
