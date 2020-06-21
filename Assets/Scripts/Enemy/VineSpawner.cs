@@ -17,7 +17,7 @@ public class VineSpawner : MonoBehaviour
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        height = Random.Range(3, 10);
+        height = Random.Range(3, 6);
         SpawnTop();
     }
 
