@@ -33,6 +33,10 @@ public class GameController : MonoBehaviour
     public Transform vineContainer;
     public GameObject EnvironmentContainer;
 
+    [Header("Sound")]
+    public AudioSource WinSource;
+    public AudioSource LoseSource;
+
     private GameObject[] levelPrefabs;
     private PlayerController player;
     private GameObject finish;
@@ -154,6 +158,7 @@ public class GameController : MonoBehaviour
     {
         gameState = GameState.gameOver;
         LevelCompletePanel.SetActive(true);
+        WinSource.Play();
     }
 
     public void GameOver()
@@ -162,6 +167,8 @@ public class GameController : MonoBehaviour
         {
             gameState = GameState.gameOver;
             EndGamePanel.SetActive(true);
+            LoseSource.time = 0.3f;
+            LoseSource.Play();
             Time.timeScale = 0;
         }        
     }
