@@ -5,14 +5,6 @@ using UnityEngine;
 public class AcornController : MonoBehaviour
 {
     public GameObject seedsPrefab;
-    public GameObject branchPrefab;
-
-    [HideInInspector]
-    public Transform seedContainer;
-    [HideInInspector]
-    public Transform branchContainer;
-    [HideInInspector]
-    public Transform fxContainer;
 
     GameController gameCtrl;
     Vector3 storedVelocity;
@@ -22,27 +14,28 @@ public class AcornController : MonoBehaviour
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    public void PassContainers(Transform seed, Transform branch, Transform fx)
-    {
-        seedContainer = seed;
-        branchContainer = branch;
-        fxContainer = fx;
-    }
-
     public void DestroyAcorn()
     {
         GameObject clickPrefab = Resources.Load<GameObject>("Prefabs/FX_Click");
-        GameObject fxClick = Instantiate(clickPrefab, fxContainer);
+        GameObject fxClick = Instantiate(clickPrefab, gameCtrl.fxContainer);
         fxClick.transform.position = transform.position + Vector3.back * 2;
         Destroy(fxClick, 2f);
+
         GameObject lightningPrefab = Resources.Load<GameObject>("Prefabs/FX_Lightnings");
-        GameObject fxLightning = Instantiate(lightningPrefab, fxContainer);
-        fxLightning.transform.position = transform.position + Vector3.back* 2;
+        GameObject fxLightning = Instantiate(lightningPrefab, gameCtrl.fxContainer);
+        fxLightning.transform.position = transform.position + Vector3.back * 2;
         Destroy(fxLightning, 2f);
 
-        GameObject seeds = Instantiate(seedsPrefab, seedContainer);
-        seeds.transform.position = transform.position;
-        GameObject branch = Instantiate(branchPrefab, branchContainer);
+        int seedGenerator = Random.Range(1, 5);
+        for (int i = 0; i < seedGenerator; i++)
+        {
+            GameObject seed = Instantiate(seedsPrefab, gameCtrl.seedContainer);
+            seed.transform.position = transform.position + new Vector3(.5f*i, Random.Range(-.5f,-1.5f), 0);
+            seed.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1, 6), Random.Range(0f, 6), 0f), ForceMode.Impulse);
+        }
+
+        GameObject branchPrefab = Resources.Load<GameObject>("Prefabs/branch");
+        GameObject branch = Instantiate(branchPrefab, gameCtrl.branchContainer);
         branch.transform.position = transform.position;
         gameCtrl.AddScore(2);
 

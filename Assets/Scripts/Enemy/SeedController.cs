@@ -18,11 +18,8 @@ public class SeedController : MonoBehaviour
     {
         if (other.name == "VineContainer")
         {
-            //Create vines and destroy the seed
-            GameObject vines = Instantiate(vinePrefab, other.transform, false);
-            vines.transform.position = transform.position;
-            vines.transform.localPosition += new Vector3(0, -24, 0f);
-            Destroy(gameObject);
+            Debug.Log("Spawning vine from floor");
+            SpawnVine();
         }
         else if( other.transform.tag == "Player")
         {
@@ -31,5 +28,20 @@ public class SeedController : MonoBehaviour
             gameCtrl.AddScore(1);
             Destroy(gameObject);
         }
+        else if (other.name.StartsWith("seedTrigger"))
+        {
+            Debug.Log("Spawning vine from branch");
+            SpawnVine();
+        }
+    }
+
+    private void SpawnVine()
+    {
+        //Create vines and destroy the seed
+        GameObject vines = Instantiate(vinePrefab, transform.position, Quaternion.identity);
+        vines.transform.parent = gameCtrl.vineContainer;
+        //vines.transform.position = transform.position;
+        //vines.transform.lossyScale = Vector3.one;
+        Destroy(gameObject);
     }
 }

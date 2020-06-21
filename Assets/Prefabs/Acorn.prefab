@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 44262376760001455}
   - component: {fileID: 44262376760001361}
   - component: {fileID: 44262376760001450}
-  - component: {fileID: 7283089600525335846}
+  - component: {fileID: 6565592345268388134}
   m_Layer: 0
   m_Name: Acorn
   m_TagString: Untagged
@@ -116,8 +116,9 @@ MonoBehaviour:
     type: 3}
   seedContainer: {fileID: 0}
   branchContainer: {fileID: 0}
---- !u!65 &7283089600525335846
-BoxCollider:
+  fxContainer: {fileID: 0}
+--- !u!136 &6565592345268388134
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,6 +127,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 3, z: 1.5}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

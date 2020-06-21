@@ -10,11 +10,6 @@ public class AcornSpawner : MonoBehaviour
     public float MaxYRandomSpawnForce = 1f;
     [Header("Prefab")]
     public GameObject acorn;
-    [Header("Containers")] //to keep our editor clean
-    public Transform acornContainer;
-    public Transform seedContainer;
-    public Transform branchContainer;
-    public Transform fxContainer;
 
     GameController gameCtrl;
 
@@ -76,9 +71,8 @@ public class AcornSpawner : MonoBehaviour
         else if (_lastSpawn > 0)
             _lastSpawn = Random.Range(-5f, -1f);
 
-        GameObject acornInstance =Instantiate(acorn, acornContainer);
+        GameObject acornInstance =Instantiate(acorn, gameCtrl.acornContainer);
         acornInstance.transform.position = transform.position + new Vector3(_lastSpawn, 0f, 0f);
         acornInstance.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-MaxXRandomSpawnForce, MaxXRandomSpawnForce), Random.Range(0f, MaxYRandomSpawnForce), 0f), ForceMode.Impulse);
-        acornInstance.GetComponent<AcornController>().PassContainers(seedContainer, branchContainer, fxContainer);
     }
 }
