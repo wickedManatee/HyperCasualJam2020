@@ -5,6 +5,7 @@ using UnityEngine;
 public class AcornController : MonoBehaviour
 {
     public GameObject seedsPrefab;
+    public float RandomRotationRange = 20f;
 
     GameController gameCtrl;
     Vector3 storedVelocity;
@@ -12,6 +13,7 @@ public class AcornController : MonoBehaviour
     void Start()
     {
         gameCtrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, Random.Range(-RandomRotationRange, RandomRotationRange));
     }
 
     public void DestroyAcorn()

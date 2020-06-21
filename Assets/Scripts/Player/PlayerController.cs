@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Looks")]
     public MeshRenderer DropletMesh;
-    public MeshRenderer CloudMesh;
+    public SpriteRenderer CloudRenderer;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void Start()
     {
-        CloudMesh.enabled = false;
+        CloudRenderer.enabled = false;
     }
 
     public virtual void SetKinematic(bool isKinematic)
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         SetKinematic(true);
         
         DropletMesh.enabled = false;
-        CloudMesh.enabled = true;
+        CloudRenderer.enabled = true;
     }
 
     public virtual void Respawn(Vector3 position)
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         SetPosition(position);
         SetKinematic(false);
         DropletMesh.enabled = true;
-        CloudMesh.enabled = false;
+        CloudRenderer.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
