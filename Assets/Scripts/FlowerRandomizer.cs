@@ -7,8 +7,7 @@ public class FlowerRandomizer : MonoBehaviour
     public Sprite[] Options;
     protected virtual void Awake()
     {
-        var random = Random.Range(0, 2);
-        Debug.Log(random);
+        var random = Random.Range(0, Options.Length);
         GetComponent<SpriteRenderer>().sprite = Options[random];
     }
 
