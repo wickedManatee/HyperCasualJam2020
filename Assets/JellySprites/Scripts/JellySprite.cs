@@ -1472,7 +1472,7 @@ public abstract class JellySprite : MonoBehaviour
 						referencePoint.Body2D.isKinematic = isKinematic;
 					}					
 					else if(referencePoint.Body3D)						
-					{						
+					{	
 						referencePoint.Body3D.isKinematic = isKinematic;
 					}
 				}

@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded) _rigidbody.AddForce(-_rigidbody.velocity.normalized * Friction * 100 * Time.deltaTime, ForceMode.Acceleration);
     }
 
-    public virtual void SetPosition(Vector3 vector3)
+    public virtual void SetPosition(Vector3 vector3, bool resetVelocity = true)
     {
         transform.position = vector3;
     }

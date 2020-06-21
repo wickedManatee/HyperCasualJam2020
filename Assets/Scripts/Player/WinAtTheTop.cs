@@ -60,7 +60,8 @@ public class WinAtTheTop : MonoBehaviour
 
     protected virtual void TransformMesh()
     {
-        if(DropletMesh != null) DropletMesh.enabled = false;
+        if (DropletMesh != null) DropletMesh.enabled = false;
+        else if(GetComponent<MeshRenderer>() != null) GetComponent<MeshRenderer>().enabled = false;
         if (CloudMesh != null) CloudMesh.enabled = true;
     }
 
