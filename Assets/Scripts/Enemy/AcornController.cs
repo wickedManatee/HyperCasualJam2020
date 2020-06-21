@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AcornController : MonoBehaviour
 {
+    public AudioSource Thunder;
     public GameObject seedsPrefab;
     public float RandomRotationRange = 20f;
 
@@ -26,7 +27,7 @@ public class AcornController : MonoBehaviour
         GameObject lightningPrefab = Resources.Load<GameObject>("Prefabs/FX_Lightnings");
         GameObject fxLightning = Instantiate(lightningPrefab, gameCtrl.fxContainer);
         fxLightning.transform.position = transform.position + Vector3.back * 2;
-        Destroy(fxLightning, 2f);
+        Destroy(fxLightning, 3.1f);
 
         int seedGenerator = Random.Range(1, 5);
         for (int i = 0; i < seedGenerator; i++)
