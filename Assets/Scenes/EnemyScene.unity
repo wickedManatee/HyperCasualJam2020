@@ -860,6 +860,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 35341558}
     m_Modifications:
+    - target: {fileID: 1407862800, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa16abcacf7aff34ba9b0c2df78a7b85,
+        type: 3}
     - target: {fileID: 2255367200991057720, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6950,6 +6955,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 35341558}
     m_Modifications:
+    - target: {fileID: 1407862800, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa16abcacf7aff34ba9b0c2df78a7b85,
+        type: 3}
     - target: {fileID: 2255367200991057720, guid: 0a52ddae6acb6bf4b8a3a25daf98bbfc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7028,7 +7038,7 @@ PrefabInstance:
     - target: {fileID: 2355823724695362813, guid: 5c6aef36011dc274fbf6df9d293d65e7,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5443454570304988024, guid: 5c6aef36011dc274fbf6df9d293d65e7,
         type: 3}
@@ -8146,7 +8156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: c3c4172d9e71e0341be47c5470c363f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

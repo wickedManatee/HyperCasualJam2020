@@ -9,6 +9,10 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Bb]uild Ios/
+/[Bb]uild Mac/
+/[Bb]uild Mac.app/
+
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -66,3 +70,7 @@ Assets/Resources/Sounds.meta
 Assets/Sounds.meta
 Assets/(Nongame)/title.pdn
 Assets/(Nongame)/title.pdn.meta
+Build Ios.zip
+Build Mac.zip
+Build Mac.app.zip
+Build Windows.zip
