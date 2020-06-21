@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Looks")]
     public MeshRenderer DropletMesh;
     public SpriteRenderer CloudRenderer;
+    public Animator EvaporationAnim;
 
     protected List<Ability> _abilities;     // The controller calls all abilities every frame
     protected Rigidbody _rigidbody;         
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     protected virtual void Start()
     {
         CloudRenderer.enabled = false;
+        EvaporationAnim.enabled = false;
     }
 
     public virtual void SetKinematic(bool isKinematic)
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
         
         DropletMesh.enabled = false;
         CloudRenderer.enabled = true;
+        EvaporationAnim.enabled = true;
     }
 
     public virtual void Respawn(Vector3 position)
@@ -132,6 +135,7 @@ public class PlayerController : MonoBehaviour
         SetKinematic(false);
         DropletMesh.enabled = true;
         CloudRenderer.enabled = false;
+        EvaporationAnim.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2939792132033234844}
   - component: {fileID: 3520379513426885123}
-  - component: {fileID: 3863676719373110044}
   - component: {fileID: 75140354187520046}
   - component: {fileID: 2437620440569397916}
   - component: {fileID: 7850584653611622365}
+  - component: {fileID: 8333690718186004877}
   m_Layer: 0
-  m_Name: Seeds
+  m_Name: Seed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,19 +51,6 @@ MonoBehaviour:
     type: 3}
   flowerPrefab: {fileID: 44262376760001360, guid: 2a2f684db68f04641a970358edec45c1,
     type: 3}
---- !u!65 &3863676719373110044
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2304718944368251895}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &75140354187520046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +114,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &8333690718186004877
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304718944368251895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
