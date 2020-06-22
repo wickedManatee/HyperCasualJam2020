@@ -6,8 +6,9 @@ public class VineTop : VineBasic
 {
     
     public bool needsToSpawn;
-
+    [SerializeField]
     bool _keepMoving;
+    [SerializeField]
     bool _colliding;
     float speed;
 
@@ -23,15 +24,18 @@ public class VineTop : VineBasic
     {
         if (_keepMoving || _colliding)
         {
-            transform.localPosition += Time.deltaTime * speed * Vector3.up;
-            transform.Rotate(0, 50f*Time.deltaTime, 0);
+            transform.parent.localPosition += Time.deltaTime * speed * Vector3.up;
+        }
+        else if (!_keepMoving && !_colliding)
+        {
+            transform.GetComponent<Animator>().enabled = false;
         }
     }
 
     public override void OnTriggerEnter(Collider collision)
     {
         base.OnTriggerEnter(collision);
-        if (collision.name.StartsWith("vineMid"))
+        if (collision.name.StartsWith("vineMid") && collision.transform.parent.parent == transform.parent.parent)
         {
             _colliding = true;
         }
@@ -39,10 +43,18 @@ public class VineTop : VineBasic
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.StartsWith("vineMid"))
+        if (other.name.StartsWith("vineMid") && other.transform.parent.parent == transform.parent.parent)
         {
             needsToSpawn = true;
             _colliding = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.name.StartsWith("vineMid") && other.transform.parent.parent == transform.parent.parent)
+        {
+            _colliding = true;
         }
     }
 
