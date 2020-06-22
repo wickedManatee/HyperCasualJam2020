@@ -156,6 +156,7 @@ public class GameController : MonoBehaviour
     #region Public methods
     public void LevelComplete()
     {
+        AddScore(10* Level);
         gameState = GameState.gameOver;
         LevelCompletePanel.SetActive(true);
         WinSource.Play();
